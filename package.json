@@ -1,6 +1,6 @@
 {
-  "name": "react-project",
-  "homepage": "https://github.io/liquidsteel49/react-project< YOUR GH USERNAME >/< GH REPO NAME >",
+  "name": "pokemon-react-client",
+  "homepage": "https://github.io/liquidsteel49/pokemon-react-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
