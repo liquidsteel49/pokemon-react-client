@@ -3,7 +3,7 @@ Wireframe:
 Deployed heroku:
 Deployed gh-pages:
 
-Technologies used: react, express, mongoDB, mongoose, javascript, html, css
+Technologies used: react, express, mongoDB, mongoose, javascript, html, css, and JASON
 
 I want to make a replica of the "Who's that pokemon?" game played before and after the commercial break during the original Pokemon TV show. The user must sign up and sign in and make a profile before playing. This profile will have their trainer name and favorite pokemon id with picture.
 
