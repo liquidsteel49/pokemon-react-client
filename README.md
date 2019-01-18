@@ -1,4 +1,4 @@
-Wireframe:
+Wireframe: on phone, yet to post on imgur
 
 Deployed heroku:
 Deployed gh-pages:
