@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+const apiUrl = 'http://localhost:4741'
+
 class Profile extends Component {
   constructor () {
     super()
@@ -14,20 +16,20 @@ class Profile extends Component {
     [event.target.name]: event.target.value
   })
 
-  // createProfile = credentials => {
-  //   return fetch(apiUrl + '/profile', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       this.state: {
-  //         trainerName: credentials.email,
-  //         favPoke: credentials.password,
-  //       }
-  //     })
-  //   })
-  // }
+  createProfile = (event) => {
+    event.preventDefault()
+    return fetch(apiUrl + '/profile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization':`Token token=${this.props.user.token}`
+      },
+      body: JSON.stringify({
+        trainerName: this.state.trainerName,
+        favPoke: this.state.favPoke
+      })
+    })
+  }
 
   render() {
     return(
