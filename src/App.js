@@ -17,7 +17,8 @@ class App extends Component {
     this.state = {
       user: null,
       flashMessage: '',
-      flashType: null
+      flashType: null,
+      profileId: ''
     }
   }
 
@@ -33,6 +34,8 @@ class App extends Component {
     this.messageTimeout = setTimeout(() => this.setState({flashMessage: null
     }), 2000)
   }
+
+  setProfileId = (id) => this.setState({ profileId: id })
 
   render () {
     const { flashMessage, flashType, user } = this.state
@@ -56,7 +59,7 @@ class App extends Component {
             <ChangePassword flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/profile' render={() => (
-            <Profile user={user} />
+            <Profile user={user} setProfileId={this.setProfileId} />
           )} />
         </main>
       </React.Fragment>
