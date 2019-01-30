@@ -28,8 +28,7 @@ class Profile extends Component {
       },
       body: JSON.stringify({
         name: this.state.trainerName,
-        fav_poke_id: poke,
-        owner: this.props.user._id
+        fav_poke_id: poke
       })
     })
   }

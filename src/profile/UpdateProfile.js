@@ -25,8 +25,8 @@ class Profile extends Component {
         'Authorization':`Token token=${this.props.user.token}`
       },
       body: JSON.stringify({
-        trainerName: this.state.trainerName,
-        favPoke: this.state.favPoke
+        name: this.state.trainerName,
+        fav_poke_id: this.state.favPoke
       })
     })
   }
