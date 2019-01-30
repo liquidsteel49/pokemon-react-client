@@ -8,7 +8,7 @@ class Profile extends Component {
 
     this.state = {
       trainerName: '',
-      favPoke: ''
+      favPoke: null
     }
   }
 
@@ -18,6 +18,8 @@ class Profile extends Component {
 
   createProfile = (event) => {
     event.preventDefault()
+    const poke = Number(this.state.favPoke)
+    console.log(typeof this.state.favPoke)
     return fetch(apiUrl + '/profile', {
       method: 'POST',
       headers: {
@@ -25,8 +27,9 @@ class Profile extends Component {
         'Authorization':`Token token=${this.props.user.token}`
       },
       body: JSON.stringify({
-        trainerName: this.state.trainerName,
-        favPoke: this.state.favPoke
+        name: this.state.trainerName,
+        fav_poke_id: poke,
+        owner: this.props.user._id
       })
     })
   }
