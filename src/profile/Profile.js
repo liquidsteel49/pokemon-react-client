@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import messages from './messages'
+import { withRouter } from 'react-router-dom'
 
 const apiUrl = 'http://localhost:4741'
+const handleErrors = res => {
+  if (res.ok) {
+    return res
+  } else {
+    throw new Error('Invalid information')
+  }
+}
 
 class Profile extends Component {
   constructor () {
@@ -18,9 +27,13 @@ class Profile extends Component {
 
   createProfile = (event) => {
     event.preventDefault()
+
     const poke = Number(this.state.favPoke)
-    console.log(typeof this.state.favPoke)
-    return fetch(apiUrl + '/profile', {
+    // look at line 26 from ChangePassword for pattern
+    // flash defined in line 29 of App.js file
+    const { flash, history, setProfileId } = this.props
+
+    fetch(apiUrl + '/profile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,6 +44,14 @@ class Profile extends Component {
         fav_poke_id: poke
       })
     })
+      .then(handleErrors)
+      .then(res => setProfileId(res.body._id))
+      .then(() => flash(messages.createProfileSuccess, 'flash-success'))
+      .then(() => history.push('/'))
+      .catch(err => {
+        console.error(err)
+        flash(messages.createProfileFailure, 'flash-error')
+      })
   }
 
   render() {
@@ -64,4 +85,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile
+export default withRouter(Profile)
