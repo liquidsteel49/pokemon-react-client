@@ -11,7 +11,7 @@ const handleErrors = res => {
   }
 }
 
-class Profile extends Component {
+class CreateProfile extends Component {
   constructor () {
     super()
 
@@ -28,10 +28,9 @@ class Profile extends Component {
   createProfile = (event) => {
     event.preventDefault()
 
-    const poke = Number(this.state.favPoke)
     // look at line 26 from ChangePassword for pattern
     // flash defined in line 29 of App.js file
-    const { flash, history, setProfileId } = this.props
+    const { flash, history, setProfileId, profileId } = this.props
 
     fetch(apiUrl + '/profile', {
       method: 'POST',
@@ -41,13 +40,14 @@ class Profile extends Component {
       },
       body: JSON.stringify({
         name: this.state.trainerName,
-        fav_poke_id: poke
+        fav_poke_id: this.state.favPoke
       })
     })
       .then(handleErrors)
-      .then(res => setProfileId(res.body._id))
+      .then(res => res.json())
+      .then(res => setProfileId(res.profile._id))
       .then(() => flash(messages.createProfileSuccess, 'flash-success'))
-      .then(() => history.push('/'))
+      .then(() => history.push('/Profile'))
       .catch(err => {
         console.error(err)
         flash(messages.createProfileFailure, 'flash-error')
@@ -57,7 +57,7 @@ class Profile extends Component {
   render() {
     return(
       <div>
-        <form className='profile-form' onSubmit={this.createProfile}>
+        <form className='create-profile-form' onSubmit={this.createProfile}>
           <h3>Create Profile</h3>
 
           <label htmlFor="trainerName">Name</label>
@@ -85,4 +85,4 @@ class Profile extends Component {
   }
 }
 
-export default withRouter(Profile)
+export default withRouter(CreateProfile)

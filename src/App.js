@@ -8,7 +8,8 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-import Profile from './profile/Profile.js'
+import CreateProfile from './profile/CreateProfile.js'
+import ShowProfile from './profile/ShowProfile.js'
 
 class App extends Component {
   constructor () {
@@ -38,7 +39,7 @@ class App extends Component {
   setProfileId = (id) => this.setState({ profileId: id })
 
   render () {
-    const { flashMessage, flashType, user } = this.state
+    const { flashMessage, flashType, user, profileId } = this.state
 
     return (
       <React.Fragment>
@@ -59,7 +60,9 @@ class App extends Component {
             <ChangePassword flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/profile' render={() => (
-            <Profile flash={this.flash} user={user} setProfileId={this.setProfileId} />
+            !this.state.profileId
+              ? <CreateProfile flash={this.flash} user={user} setProfileId={this.setProfileId} profileId={this.state.profileId} />
+              : <ShowProfile user={user} profileId={this.state.profileId} />
           )} />
         </main>
       </React.Fragment>
