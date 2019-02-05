@@ -62,7 +62,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/profile' render={() => (
             !this.state.profileId
               ? <CreateProfile flash={this.flash} user={user} setProfileId={this.setProfileId} profileId={this.state.profileId} />
-              : <ShowProfile user={user} profileId={this.state.profileId} />
+              : <ShowProfile user={this.state.user} profileId={this.state.profileId} />
           )} />
         </main>
       </React.Fragment>
