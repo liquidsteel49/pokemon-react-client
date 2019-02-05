@@ -21,31 +21,40 @@ class ShowProfile extends Component {
       imgPoke: null
     }
   }
+
+  componentDidMount() {
+
+    const { history, profileId, user } = this.props
+    console.log('profileID',profileId)
+    console.log('user', user)
+
+    fetch(apiUrl + '/profile' + '/' + user._id, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization':`Token token=${this.props.user.token}`
+      }
+    })
+      .then(handleErrors)
+      .then(res => JSON.stringify(res))
+      .then(res => {
+        console.log(res)
+        debugger
+        return res
+      })
+      .then(res => {
+        this.setState({ trainerName: res.data.name, favPoke: res.data.fav_poke_id  })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  render() {
+    return(
+      <div>This is your profile</div>
+    )
+  }
 }
 
-showProfile = (event) => {
-  event.preventDefault()
-
-  const { flash, history, setProfileId, profileId } = this.props
-
-  fetch(apiUrl + '/profile', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization':`Token token=${this.props.user.token}`
-    },
-    body: JSON.stringify({
-      name: this.state.trainerName,
-      fav_poke_id: this.state.favPoke
-    })
-  })
-    .then(handleErrors)
-    .then(res => res.json())
-    .then(res => setProfileId(res.profile._id))
-    .then(() => flash(messages.createProfileSuccess, 'flash-success'))
-    .then(() => history.push('/Profile'))
-    .catch(err => {
-      console.error(err)
-      flash(messages.createProfileFailure, 'flash-error')
-    })
-}
+export default withRouter(ShowProfile)
