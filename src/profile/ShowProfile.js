@@ -17,8 +17,10 @@ class ShowProfile extends Component {
 
     this.state = {
       trainerName: '',
-      favPoke: null,
-      imgPoke: null
+      favPoke: '',
+      imgPoke: '',
+      pokeName: '',
+      pokeNum: ''
     }
   }
 
@@ -37,19 +39,32 @@ class ShowProfile extends Component {
     })
       .then(handleErrors)
       .then(res => {
-        console.log('after handleError', res)
-        return res
-      })
-      .then(res => {
         return res.json()
       })
-      // .then(res => {
-      //   console.log(res)
-      //   return res
-      // })
       .then(res => {
-        console.log('res.body', res.body)
         this.setState({ trainerName: res.body.name, favPoke: res.body.fav_poke_id  })
+        return res.body.fav_poke_id
+      })
+      .then(resPoke => {
+        fetch(apiUrl + '/pokeLists/' + resPoke, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization':`Token token=${this.props.user.token}`
+          }
+        })
+          .then(handleErrors)
+          .then(res => {
+            console.log('after handleError', res)
+            return res
+          })
+          .then(res => {
+            return res.json()
+          })
+          .then(res => {
+            console.log('res.body', res.body)
+            this.setState({ pokeName: res.body.name, imgPoke: res.body.img.visible, pokeNum: res.body.poke_num  })
+          })
       })
       .catch(err => {
         console.error(err)
@@ -61,7 +76,7 @@ class ShowProfile extends Component {
       <div>
         <h1>profile</h1>
         <h2>name: {this.state.trainerName}</h2>
-        <h2>poke id: {this.state.favPoke}</h2>
+        <h2>poke name: {this.state.pokeName}</h2>
       </div>
     )
   }
