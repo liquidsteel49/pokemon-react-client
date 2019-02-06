@@ -47,7 +47,7 @@ class CreateProfile extends Component {
       .then(res => res.json())
       .then(res => setProfileId(res.profile._id))
       .then(() => flash(messages.createProfileSuccess, 'flash-success'))
-      .then(() => history.push('/Profile'))
+      .then(() => history.push('/profile'))
       .catch(err => {
         console.error(err)
         flash(messages.createProfileFailure, 'flash-error')
