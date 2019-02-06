@@ -28,7 +28,7 @@ class ShowProfile extends Component {
     console.log('profileID',profileId)
     console.log('user', user)
 
-    fetch(apiUrl + '/profile' + '/' + user._id, {
+    fetch(apiUrl + '/profile/' + user._id, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -36,14 +36,20 @@ class ShowProfile extends Component {
       }
     })
       .then(handleErrors)
-      .then(res => JSON.stringify(res))
       .then(res => {
-        console.log(res)
-        debugger
+        console.log('after handleError', res)
         return res
       })
       .then(res => {
-        this.setState({ trainerName: res.data.name, favPoke: res.data.fav_poke_id  })
+        return res.json()
+      })
+      // .then(res => {
+      //   console.log(res)
+      //   return res
+      // })
+      .then(res => {
+        console.log('res.body', res.body)
+        this.setState({ trainerName: res.body.name, favPoke: res.body.fav_poke_id  })
       })
       .catch(err => {
         console.error(err)
@@ -52,7 +58,11 @@ class ShowProfile extends Component {
 
   render() {
     return(
-      <div>This is your profile</div>
+      <div>
+        <h1>profile</h1>
+        <h2>name: {this.state.trainerName}</h2>
+        <h2>poke id: {this.state.favPoke}</h2>
+      </div>
     )
   }
 }
