@@ -3,7 +3,7 @@ const apiUrl = 'http://localhost:4741'
 export const handleErrors = res => {
   if (res.ok) {
     return res
-  } else  {
+  } else {
     throw new Error('Recieved status in 400 or 500 range.')
   }
 }

@@ -8,6 +8,8 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
+import CreateProfile from './profile/CreateProfile.js'
+import ShowProfile from './profile/ShowProfile.js'
 
 class App extends Component {
   constructor () {
@@ -16,7 +18,8 @@ class App extends Component {
     this.state = {
       user: null,
       flashMessage: '',
-      flashType: null
+      flashType: null,
+      profileId: ''
     }
   }
 
@@ -33,14 +36,16 @@ class App extends Component {
     }), 2000)
   }
 
+  setProfileId = (id) => this.setState({ profileId: id })
+
   render () {
-    const { flashMessage, flashType, user } = this.state
+    const { flashMessage, flashType, user, profileId } = this.state
 
     return (
       <React.Fragment>
         <Header user={user} />
         {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
-        
+
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
@@ -53,6 +58,11 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword flash={this.flash} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/profile' render={() => (
+            !this.state.profileId
+              ? <CreateProfile flash={this.flash} user={user} setProfileId={this.setProfileId} profileId={this.state.profileId} />
+              : <ShowProfile user={this.state.user} profileId={this.state.profileId} />
           )} />
         </main>
       </React.Fragment>
