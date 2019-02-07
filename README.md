@@ -1,7 +1,7 @@
 Wireframe: on phone, yet to post on imgur
 
-Deployed heroku:
-Deployed gh-pages:
+Deployed heroku: https://secure-reaches-50075.herokuapp.com/
+Deployed gh-pages: https://liquidsteel49.github.io/pokemon-react-client/
 
 Technologies used: react, express, mongoDB, mongoose, javascript, html, css, and JASON
 
