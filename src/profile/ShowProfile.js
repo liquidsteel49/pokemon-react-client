@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import messages from './messages'
 import { withRouter } from 'react-router-dom'
+import apiUrl from '../apiConfig.js'
 
-const apiUrl = 'http://localhost:4741'
 const handleErrors = res => {
   if (res.ok) {
     return res

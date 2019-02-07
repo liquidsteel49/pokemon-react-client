@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-
-const apiUrl = 'http://localhost:4741'
+import apiUrl from '../apiConfig.js'
 
 class Profile extends Component {
   constructor (props) {
