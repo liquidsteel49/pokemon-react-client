@@ -3,6 +3,16 @@ Wireframe: on phone, yet to post on imgur
 Deployed heroku: https://secure-reaches-50075.herokuapp.com/
 Deployed gh-pages: https://liquidsteel49.github.io/pokemon-react-client/
 
+Wireframe: {
+  authenticated user landing: https://imgur.com/OWlKq9m
+  game started: https://imgur.com/dK97y16
+  unauthenticated landing page: https://imgur.com/UN3LahE
+  sign up page: https://imgur.com/XLd9IKU
+  profile view w/profile: https://imgur.com/43oN3Df
+  profile view w/o profile: https://imgur.com/UKUPhWg
+  update profile view: https://imgur.com/LfrOOD2
+}
+
 Technologies used: react, express, mongoDB, mongoose, javascript, html, css, and JASON
 
 I want to make a replica of the "Who's that pokemon?" game played before and after the commercial break during the original Pokemon TV show. The user must sign up and sign in and make a profile before playing. This profile will have their trainer name and favorite pokemon id with picture.
