@@ -1,5 +1,3 @@
-Wireframe: on phone, yet to post on imgur
-
 Deployed heroku: https://secure-reaches-50075.herokuapp.com/
 Deployed gh-pages: https://liquidsteel49.github.io/pokemon-react-client/
 
