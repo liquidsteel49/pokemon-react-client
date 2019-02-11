@@ -76,6 +76,7 @@ class ShowProfile extends Component {
       <div>
         <h1>profile</h1>
         <h2>name: {this.state.trainerName}</h2>
+        <h2>Pokedex Num: {this.state.pokeNum}</h2>
         <h2>poke name: {this.state.pokeName}</h2>
       </div>
     )

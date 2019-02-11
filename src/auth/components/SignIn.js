@@ -31,13 +31,21 @@ class SignIn extends Component {
       .then(res => setUser(res.user))
       .then(() => flash(messages.signInSuccess, 'flash-success'))
       .then(() => history.push('/'))
-      // .then(() => fetch(apiUrl + '/profile/' + user._id, {
-      //   method: 'GET',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization':`Token token=${this.props.user.token}`
+      // .then(() => {
+      //   console.log('Before fetch', res)
+      //   if (fetch(apiUrl + '/profile/' + res.user._id, {
+      //     method: 'GET',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       'Authorization':`Token token=${this.props.user.token}`
+      //     }
+      //   })) {
+      //     console.log(res)
+      //     return res
+      //   } else {
+      //     console.log('Error checking profile', err)
       //   }
-      // }))
+      // })
       // .then(res => setProfileId(res.profile._id))
       .catch(() => flash(messages.signInFailure, 'flash-error'))
   }

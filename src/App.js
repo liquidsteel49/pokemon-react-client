@@ -10,6 +10,7 @@ import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import CreateProfile from './profile/CreateProfile.js'
 import ShowProfile from './profile/ShowProfile.js'
+import ProfileCheck from './profile/ProfileCheck.js'
 
 class App extends Component {
   constructor () {
@@ -19,7 +20,6 @@ class App extends Component {
       user: null,
       flashMessage: '',
       flashType: null,
-      profileId: ''
     }
   }
 
@@ -35,8 +35,6 @@ class App extends Component {
     this.messageTimeout = setTimeout(() => this.setState({flashMessage: null
     }), 2000)
   }
-
-  setProfileId = (id) => this.setState({ profileId: id })
 
   render () {
     const { flashMessage, flashType, user, profileId } = this.state
@@ -60,9 +58,7 @@ class App extends Component {
             <ChangePassword flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/profile' render={() => (
-            !this.state.profileId
-              ? <CreateProfile flash={this.flash} user={user} setProfileId={this.setProfileId} profileId={this.state.profileId} />
-              : <ShowProfile user={this.state.user} profileId={this.state.profileId} />
+            <ProfileCheck flash={this.flash} user={user} setProfileId={this.setProfileId} profileId={this.state.profileId} />
           )} />
         </main>
       </React.Fragment>

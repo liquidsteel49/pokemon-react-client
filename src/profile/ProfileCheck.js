@@ -3,8 +3,13 @@ import messages from './messages'
 import { withRouter } from 'react-router-dom'
 import CreateProfile from './CreateProfile.js'
 import ShowProfile from './ShowProfile.js'
+<<<<<<< HEAD
 import apiUrl from '../apiConfig.js'
 
+=======
+
+const apiUrl = 'http://localhost:4741'
+>>>>>>> dev
 const handleErrors = res => {
   if (res.ok) {
     return res
