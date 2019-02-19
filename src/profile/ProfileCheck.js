@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import messages from './messages'
 import { withRouter } from 'react-router-dom'
 import CreateProfile from './CreateProfile.js'
 import ShowProfile from './ShowProfile.js'
